@@ -8,7 +8,7 @@ import re
 for filename in glob.glob('*.txt'):
   with open(filename, 'r') as f:
     for line in f:
-      if line[1:4].isdigit():
+      if line[1:4].isdigit() and line[6:10].isdigit():
         print("-----------------------")
         print (line[1:4]) #branch
         print (line[6:10]) #emplid
@@ -21,8 +21,7 @@ for filename in glob.glob('*.txt'):
         print (line[98:128])
         if len(line) > 129:
           print (line[129:159])
-      elif line[0:42].isspace() and re.search('[a-z,A-Z]', line[98:128]):
+      elif line[0:42].isspace() and re.search('[\w]', line[98:128]): #elif detects multi line comments
           print (line[98:128])
-          #this can simply be fed into the database as it's existing sql line number! eureka!
           if len(line) > 129:
             print (line[129:159])
